@@ -65,7 +65,7 @@ This session presents a Splunk dashboard designed to analyze log behavior, revea
 transition: fade-out
 ---
 
-## Outline
+# Outline
 
 Time breakdown idea: **Intro .1-.4**: 5 minutes; **Splunk .5**: 5 minutes; **How .6**: 10 minutes; **Q/A**: 5 minutes
 
@@ -80,7 +80,115 @@ Time breakdown idea: **Intro .1-.4**: 5 minutes; **Splunk .5**: 5 minutes; **How
 - Patterns: queries for exact matches and for finding patterns `collect` command and others.
 - Put all in a dashboard
 
+---
+layout: statement
+---
 
+# We have a logging problem
+
+We log a lot
+
+---
+layout: statement
+---
+
+# I mean we really log a lot
+
+We're talking PBs here
+
+---
+layout: statement
+---
+
+# And if you're here you probably log a lot too
+
+---
+transition: fade-out
+---
+
+---
+layout: intro
+---
+
+# 👋 Hello
+
+Who am I?
+
+- I'm Michele
+- I use Go at work to support the logging infrastructure (Splunk) we use at Amadeus
+- My hobbies include languages, board games and making silly GIFs with Go
+
+<br/>
+
+<img v-click src="/images/micheleRomeo.jpg" class="absolute top-15 right-15" style="width: 30%; height: auto;"/>
+<arrow v-after x1="800" y1="325" x2="825" y2="250" color="#F00" width="1" arrowSize="1" />
+<p v-after class="absolute bottom-50 right-46 opacity-100 transform -rotate-10" color="#F00">me</p>
+<p v-click class="absolute bottom-55 right-46 opacity-100 transform -rotate-10" color="#F00">young</p>
+<p v-after class="absolute top-25 right-100 opacity-100 transform -rotate-20" color="#F00">actual me</p>
+<arrow v-after x1="580" y1="125" x2="640" y2="130" color="#F00" width="1" arrowSize="1" />
+
+<img v-click src="/images/amadeus-workmark_DarkSky.png" class="absolute bottom-15 right-15" style="width: 30%; height: auto;"/>
+<img v-after src="/images/splunk-logo.png" class="absolute bottom-10 right-10" style="width: 10%; height: auto;"/>
+<p v-click class="absolute bottom-15 left-10 opacity-100 transform -rotate-350" color="#F00">こんにちわ！</p>
+<p v-after class="absolute bottom-3 left-13 opacity-100 transform -rotate-10" color="#F00">Bom dia!  </p>
+<img v-click src="/images/TTR_USA_map_graph.jpg" class="absolute bottom-2 left-65" style="width: 24%; height: auto;"/>
+<img v-click src="/images/golab.gif" class="absolute bottom-33 left-5" style="width: 95%; height: auto;"/>
+
+---
+layout: intro
+---
+
+# 👋 Hello
+
+Who am I?
+
+- I'm Michele
+- I use Go at work to support the logging infrastructure (Splunk) we use at Amadeus
+- My hobbies include languages, board games and making silly GIFs with Go
+
+
+---
+layout: fact
+---
+
+# 80% of your logs are never read
+
+
+---
+layout: statement
+---
+
+# High volume of logs == low signal to noise ratio
+
+
+---
+layout: statement
+---
+
+# High volume of logs == high costs
+
+---
+transition: fade-out
+---
+
+# Splunk provides tools to show you places where you can cut logs
+
+---
+transition: fade-out
+---
+
+# Quick overview of Splunk: devops view vs user view
+
+---
+transition: fade-out
+---
+
+# List of tools provided by splunk
+
+- which index to look at (an app can usually log to different indexes according to phase/app component/event type(audit,classic,functional monitoring,...))
+- Logging by transaction: if not you should. group and count logs by trx_id. find outliers (transaction with high count)
+- Patterns: queries for exact matches and for finding patterns `collect` command and others.
+- Put all in a dashboard
 
 ---
 transition: fade-out
