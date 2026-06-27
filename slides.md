@@ -226,6 +226,13 @@ transition: fade-out
 
 # 1. Start with the right scope
 
+get a general view of how your application logs:
+
+do you have one or multiple indexes?
+do you have fields categorizing your application? app_component, app_backemd, phase, event_type?
+
+create query to narrow the scope of your research.
+
 <div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
   <ul class="text-xl leading-10">
     <li>🧭 Choose the right index and time range first</li>
@@ -244,6 +251,14 @@ transition: fade-out
 ---
 
 # 2. Group by transaction
+
+Rework into structured vs unstructured logs first, then group by transaction. (could be 2 slides)
+
+advantages of structured (custom fields, less work on splunk)
+
+typical unstructured: event with metadata header and payload.
+
+what can help? fields extraction.
 
 <div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
   <ul class="text-xl leading-10">
@@ -285,6 +300,8 @@ transition: fade-out
 ---
 
 # 4. Turn findings into action
+
+Turn and persist as dashboards and alerts are ways to concreting queries into viz and actions
 
 <div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
   <ul class="text-xl leading-10">
