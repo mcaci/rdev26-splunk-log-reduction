@@ -1,0 +1,8 @@
+/* in your global.css or a <style> block on the slide */
+@keyframes scroll-up {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+.log-scroll {
+  animation: scroll-up 12s linear infinite;
+}

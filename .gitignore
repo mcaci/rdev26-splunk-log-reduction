@@ -5,4 +5,4 @@ dist
 .vite-inspect
 .remote-assets
 components.d.ts
-public/images
+public/images/original
