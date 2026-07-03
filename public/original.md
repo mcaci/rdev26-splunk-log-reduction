@@ -1,6 +1,5 @@
 
 ---
-transition: fade-out
 ---
 
 # What is Slidev?
@@ -577,7 +576,6 @@ Double-click on the draggable elements to edit their positions.
 src: ./pages/imported-slides.md
 hide: false
 ---
-
 ---
 
 # Monaco Editor

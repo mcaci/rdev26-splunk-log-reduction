@@ -46,7 +46,6 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
-transition: fade-out
 ---
 
 # Title, abstract and talk info
@@ -62,7 +61,6 @@ Amphi 139 (160 places)
 This session presents a Splunk dashboard designed to analyze log behavior, reveal high‑volume patterns, and highlight opportunities to reduce ingestion costs. Participants will learn how to identify repetitive noise, detect inefficient logging, and focus on events that matter. The session provides practical techniques to optimize log volume, improve observability, and support data‑driven decisions.
 
 ---
-transition: fade-out
 ---
 
 # Outline
@@ -150,173 +148,24 @@ layout: statement
 # High volume of logs == high costs
 
 ---
-transition: fade-out
 ---
 
 # Splunk provides tools to show you places where you can cut logs
 
 ---
-transition: fade-out
----
-
-# Overview of Splunk
-
-<div class="grid grid-cols-2 gap-6 mt-8 text-left">
-  <div class="p-4 rounded-xl border border-orange-400/40 bg-orange-500/10">
-    <div class="text-3xl mb-2">📱💻</div>
-    <h3 class="font-semibold mb-2">Applications and users</h3>
-    <ul class="text-sm leading-7">
-      <li>Applications generate log events continuously</li>
-      <li>Users and operators need answers quickly</li>
-      <li>Logs are the raw signal for troubleshooting and monitoring</li>
-    </ul>
-  </div>
-  <div class="p-4 rounded-xl border border-sky-400/40 bg-sky-500/10">
-    <div class="text-3xl mb-2">🧠🔎</div>
-    <h3 class="font-semibold mb-2">The Splunk platform</h3>
-    <ul class="text-sm leading-7">
-      <li>Collects, parses, stores, and indexes the data</li>
-      <li>Enables fast searches across huge volumes of events</li>
-      <li>Turns raw logs into dashboards, alerts, and reports</li>
-    </ul>
-  </div>
-</div>
+src: ./pages/intro-splunk.md
+hide: false
 
 ---
-transition: fade-out
+---
+src: ./pages/before-storage.md
+hide: false
 ---
 
-# How events flow in Splunk
-
-<div class="text-sm text-gray-300 mb-4">From application logs to searchable insight in a few steps</div>
-
-```mermaid
-flowchart LR
-  A["🖥️ Applications"] -->|emit| B[Forwarders]
-  B -->|collect| C[Indexers]
-  C -->|store| S["🗄️ Indexed events"]
-  D["🧑‍💻 Users"] -->|connect to| E[Search Head]
-  E -->|retrieve| S
-  E -->|build| F[Dashboards]
-  E -->|trigger| G[Alerts]
-
-  subgraph SplunkZone["🧰 Splunk environment"]
-    B
-    C
-    E
-    F
-    G
-  end
-
-  style A fill:#fff7ed,stroke:#fb923c,stroke-width:2px
-  style SplunkZone fill:#eff6ff,stroke:#60a5fa,stroke-width:2px
-  style D fill:#f6ffef,stroke:#a5fa60,stroke-width:2px
-  style S fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
-```
-
-<div class="mt-4 text-left text-sm leading-7">
-  <div>📤 Applications emit logs</div>
-  <div>📦 Splunk ingests and indexes them</div>
-  <div>🧑‍💻 Users run searches, dashboards, and alerts</div>
-</div>
-
 ---
-transition: fade-out
+src: ./pages/after-storage.md
+hide: false
 ---
-
-# 1. Start with the right scope
-
-get a general view of how your application logs:
-
-do you have one or multiple indexes?
-do you have fields categorizing your application? app_component, app_backemd, phase, event_type?
-
-create query to narrow the scope of your research.
-
-<div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
-  <ul class="text-xl leading-10">
-    <li>🧭 Choose the right index and time range first</li>
-    <li>🧩 Split data by app, component, phase, or event type</li>
-    <li>🎯 Focus on the highest-volume sources before touching everything</li>
-  </ul>
-  <div class="p-4 rounded-xl border border-amber-400/40 bg-amber-500/10">
-    <div class="text-sm font-semibold mb-2">SPL template</div>
-    <pre class="text-xs leading-6"><code>index=your_index earliest=-1h latest=now
-| stats count by host, source</code></pre>
-  </div>
-</div>
-
----
-transition: fade-out
----
-
-# 2. Group by transaction
-
-Rework into structured vs unstructured logs first, then group by transaction. (could be 2 slides)
-
-advantages of structured (custom fields, less work on splunk)
-
-typical unstructured: event with metadata header and payload.
-
-what can help? fields extraction.
-
-<div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
-  <ul class="text-xl leading-10">
-    <li>🔗 Use transaction IDs or correlation IDs when available</li>
-    <li>📊 Count events per transaction to reveal noisy flows</li>
-    <li>⚠️ Spot outliers: a small number of transactions may explain most of the volume</li>
-  </ul>
-  <div class="p-4 rounded-xl border border-emerald-400/40 bg-emerald-500/10">
-    <div class="text-sm font-semibold mb-2">SPL template</div>
-    <pre class="text-xs leading-6"><code>index=your_index
-| stats count by transaction_id
-| sort -count</code></pre>
-  </div>
-</div>
-
----
-transition: fade-out
----
-
-# 3. Look for repeated patterns
-
-<div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
-  <ul class="text-xl leading-10">
-    <li>🔎 Search for exact repeated messages and frequent values</li>
-    <li>🔁 Watch for retries, boilerplate logs, and duplicate events</li>
-    <li>🧠 Use <code>stats</code>, <code>top</code>, <code>rare</code>, and <code>collect</code> to uncover patterns</li>
-  </ul>
-  <div class="p-4 rounded-xl border border-sky-400/40 bg-sky-500/10">
-    <div class="text-sm font-semibold mb-2">SPL template</div>
-    <pre class="text-xs leading-6"><code>index=your_index
-| stats count by message
-| sort -count
-| where count > 100</code></pre>
-  </div>
-</div>
-
----
-transition: fade-out
----
-
-# 4. Turn findings into action
-
-Turn and persist as dashboards and alerts are ways to concreting queries into viz and actions
-
-<div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
-  <ul class="text-xl leading-10">
-    <li>📈 Build a dashboard, saved search, or alert to keep the signal visible</li>
-    <li>🛑 Decide whether to suppress, sample, or redesign noisy logging</li>
-    <li>✅ Measure the impact and iterate as the system evolves</li>
-  </ul>
-  <div class="p-4 rounded-xl border border-violet-400/40 bg-violet-500/10">
-    <div class="text-sm font-semibold mb-2">SPL template</div>
-    <pre class="text-xs leading-6"><code>index=your_index
-| stats count by message
-| where count > 1000
-| eval action="review logging"</code></pre>
-  </div>
-</div>
 
 ---
 layout: center
