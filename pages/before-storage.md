@@ -69,9 +69,10 @@ Change type: Splunk config change
 Use `props.conf` and  `transforms.conf` to control the flow of events, enrich them and/or filter them before they reach splunk.
 
 ---
+layout: two-cols-header
 ---
 
-# Implement your own filtering and extraction logic
+# Implement your own filtering and extraction logic \[TBA\]
 
 Change type: Splunk configuration change
 
@@ -91,9 +92,28 @@ Change type: Splunk configuration change
   </div>
 </div>
 
-<br/>
+::left::
 
+```ini
+[stanza 1]
+a = b
+
+[stanza 2]
+c = d
+```
+
+::right::
+
+```ini
+[stanza 1]
+a = b
+
+[stanza 2]
+c = d
+```
+<!-- 
 - Use `props.conf` and  `transforms.conf` to:
   - control the flow of events
   - enrich them
   - filter them before they reach Splunk.
+   -->

@@ -3,39 +3,12 @@
 
 # Overview of Splunk
 
-<div class="grid grid-cols-2 gap-6 mt-8 text-left">
-  <div class="p-4 rounded-xl border border-orange-400/40 bg-orange-500/10">
-    <div class="text-3xl mb-2">📱💻</div>
-    <h3 class="font-semibold mb-2">Applications and users</h3>
-    <ul class="text-sm leading-7">
-      <li>Applications generate log events continuously</li>
-      <li>Users and operators need answers quickly</li>
-      <li>Logs are the raw signal for troubleshooting and monitoring</li>
-    </ul>
-  </div>
-  <div class="p-4 rounded-xl border border-sky-400/40 bg-sky-500/10">
-    <div class="text-3xl mb-2">🧠🔎</div>
-    <h3 class="font-semibold mb-2">The Splunk platform</h3>
-    <ul class="text-sm leading-7">
-      <li>Collects, parses, stores, and indexes the data</li>
-      <li>Enables fast searches across huge volumes of events</li>
-      <li>Turns raw logs into dashboards, alerts, and reports</li>
-    </ul>
-  </div>
-</div>
+The event flow view
 
----
----
+- Indexing flow enables application events to become searchable insight
+- Search flow enables fast searches across huge volumes of events and can turns the results into dashboards, alerts, and reports
 
-# How events flow in Splunk
-
-
-<div class="text-sm text-gray-300 mb-4">From application logs to searchable insight in a few steps</div>
-
-<!--
-  A["🖥️ Applications"] -/->|send logs| B[Forwarders] 
-  B -/->|collect| C[Indexers]
--->
+<img src="../assets/splunk-logo.png" class="absolute top-58 left-93" style="width: 10%; height: auto;"/>
 
 ```mermaid
 flowchart LR
@@ -43,6 +16,8 @@ flowchart LR
   I -->|parse and store| ST
   U -->|connect to| SearchHead
   U -->|create| SE
+  U -->|create| DAR
+  DAR -->|from| SE
   SE -->|retrieve| ST
 
   subgraph SplunkUsers[" "]
@@ -50,13 +25,13 @@ flowchart LR
     U["🧑‍💻 Users"]
   end
 
-  subgraph Splunk
+  subgraph Splunk[" "]
     IndexerCluster
     SearchHeadCluster
   end
 
   subgraph IndexerCluster
-    I[Indexers]
+    I[Forwarders and Indexers]
   end
 
   subgraph SearchHeadCluster
@@ -65,6 +40,7 @@ flowchart LR
 
   subgraph SearchHead
     SE[Searches]
+    DAR[Dashboards, Alerts, Reports]
   end
 
   subgraph Storage["Storage"]
@@ -78,4 +54,15 @@ flowchart LR
   style ST fill:#fef3c7,stroke:#f59e0b,stroke-width:2px
 ```
 
-<img src="./assets/splunk-logo.png" class="absolute top-28 left-125" style="width: 10%; height: auto;"/>
+---
+---
+
+# Searchhead view of Splunk \[TBC\]
+
+The user entrypoint
+
+- Put screenshots of
+  - Search UI
+  - Dashboard UI
+  - Alert UI
+- We are going to use this view for our demos
