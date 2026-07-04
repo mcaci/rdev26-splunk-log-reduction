@@ -20,29 +20,23 @@ Get a general view of how your application logs
 Get a count of the events in Splunk in a specific time window
 
 ```spl
-| tstats index="a" OR index="b" | eventcount
+| tstats count
+    WHERE index=sensor_ok OR index=sensor_errors
+    BY index
 ```
 
 do you have fields categorizing your application (app_component, app_backend, phase, event_type)? Group them!
 
 ```spl
-| tstats index="a" OR index="b" | eventcount by app_component, event_type
+| tstats count
+    WHERE (index=sensor_ok OR index=sensor_errors)
+    BY index, remote_host, status, source
+| sort - count
 ```
 
-<div class="grid grid-cols-[1.2fr_0.8fr] gap-6 mt-8 text-left items-start">
-
-<ul class="text-xl leading-10">
-    <li>Choose the right index and time range first</li>
-    <li>Split data by app, component, phase or event type</li>
-    <li>Focus on the highest-volume sources before touching everything</li>
-  </ul>
-
-  <div class="p-4 rounded-xl border border-amber-400/40 bg-amber-500/10">
-    <div class="text-sm font-semibold mb-2">SPL template</div>
-    <pre class="text-xs leading-6"><code>index=your_index earliest=-1h latest=now
-  | stats count by host, source</code></pre>
-  </div>
-</div>
+- Choose the right index and time range first
+- Split data by app, component, phase or event type
+- Focus on the highest-volume sources before touching everything
 
 ---
 ---

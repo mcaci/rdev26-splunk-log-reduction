@@ -72,48 +72,71 @@ Use `props.conf` and  `transforms.conf` to control the flow of events, enrich th
 layout: two-cols-header
 ---
 
-# Implement your own filtering and extraction logic \[TBA\]
+# Implement your own filtering and extraction logic
 
 Change type: Splunk configuration change
 
-<div class="grid grid-cols-2 gap-6 mt-8 text-left">
+<div class="grid grid-cols-[0.85fr_1.05fr] gap-5 mt-8 text-left">
   <div class="p-4 rounded-xl border border-blue-400/40 bg-blue-500/10">
     <h3 class="font-semibold mb-2">props.conf</h3>
     <ul class="text-sm leading-7">
       <li>Create event and field manipulation <strong>rules</strong></li>
+      <li>Create routing <strong>rules</strong></li>
     </ul>
   </div>
-  <div class="p-4 rounded-xl border border-yellow-400/40 bg-yellow-500/10">
+  <div class="p-4 rounded-xl border border-yellow-400/40 bg-yellow-500/10" style="width: 85%">
     <h3 class="font-semibold mb-2">transforms.conf</h3>
     <ul class="text-sm leading-7">
-      <li>Apply manipulation <strong>rules</strong></li>
-      <li><strong>Route</strong> events where needed</li>
+      <li>Apply props.conf manipulation <strong>rules</strong></li>
+      <li><strong>Route</strong> events according to props.conf rules</li>
     </ul>
   </div>
 </div>
 
+<br/>
+
 ::left::
 
 ```ini
-[stanza 1]
-a = b
-
-[stanza 2]
-c = d
+[sensor_transactions]
+# Timestamp parsing — matches "2026/07/02 23:00:14"
+TIME_FORMAT         = %Y/%m/%d %H:%M:%S
+TIME_PREFIX         = ^\s*
+# Field extractions (search-time, via transforms.conf)
+TRANSFORMS-sensor_fields = extract_sensor_fields
+# Indexing routing (evaluated in order, first match wins)
+# Both transforms are defined in transforms.conf
+TRANSFORMS-routing  = route_ok_to_sensor_ok,\
+route_errors_to_sensor_errors
+# Auto-assign sourcetype by file path
+[source::.../sensor_*.log]
+sourcetype = sensor_transactions
 ```
 
 ::right::
 
 ```ini
-[stanza 1]
-a = b
+[extract_sensor_fields]
+REGEX = ^\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2}:\d{2}\s+(?P<transaction_id>\S+)...
+WRITE_META = true # field extraction at index time
 
-[stanza 2]
-c = d
+[route_ok_to_sensor_ok]
+REGEX   = (?i)\b\w+\s+ok\b
+DEST_KEY = _MetaData:Index
+FORMAT  = sensor_ok
+
+[route_errors_to_sensor_errors]
+REGEX   = (?i)(?:error|fail|timeout|refused|denied|critical|alert|warn)
+DEST_KEY = _MetaData:Index
+FORMAT  = sensor_errors
 ```
+
 <!-- 
 - Use `props.conf` and  `transforms.conf` to:
   - control the flow of events
   - enrich them
   - filter them before they reach Splunk.
-   -->
+
+Full stanza:
+REGEX = ^\d{4}/\d{2}/\d{2}\s+\d{2}:\d{2}:\d{2}\s+(?P<transaction_id>\S+)\s+(?P<status>[a-zA-Z][^\d]*?(?=remote|$))\s*(?:remote address is\s+(?P<remote_host>[\d.]+):(?P<remote_port>\d+))?(?:.*?temperature is\s+(?P<temperature>[\d.]+)C)?(?:.*?humidity is\s+(?P<humidity>\d+)%)?(?:.*?code is\s+(?P<error_code>\S+))?
+-->
