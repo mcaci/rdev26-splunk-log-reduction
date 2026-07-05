@@ -41,10 +41,6 @@ with Pattern Detection in Splunk
   </a>
 </div>
 
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
 ---
 src: ./pages/intro-talkoutline.md
 hide: false
@@ -60,13 +56,11 @@ src: ./pages/whoami.md
 hide: false
 ---
 
-
 ---
 layout: fact
 ---
 
 # 80% of your logs are never read
-
 
 ---
 layout: statement
@@ -74,14 +68,12 @@ layout: statement
 
 # High volume of logs == low signal to noise ratio
 
-
 ---
 layout: statement
 ---
 
 # High volume of logs == high costs
 
----
 ---
 
 # Splunk provides tools to show you places where you can cut logs
@@ -102,12 +94,24 @@ hide: false
 ---
 
 ---
-layout: center
-class: text-center
+layout: end
 ---
 
-# Learn More
+<div class="text-white font-size-10">
+Thank you very much!
+</div>
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
-
-<PoweredBySlidev mt-10 />
+<div class="absolute bottom-10">
+  <div  class="text-white">Michele Caci</div>
+  <div class="flex m-0 gap-1">
+    <a href="https://github.com/mcaci" target="_blank" alt="Michele's GitHub" title="Michele's GitHub"
+      class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+      <carbon-logo-github />
+    </a>
+    <a href="https://www.linkedin.com/in/michele-caci-47770132/" target="_blank" alt="Michele's Linkedin" title="Michele's Linkedin"
+      class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+      <carbon-logo-linkedin />
+    </a>
+  </div>
+</div>
+<!-- <img src="/images/michelecaciQR.jpeg" class="absolute bottom-5 right-5 text-right" style="width: 20%; height: auto;"/> -->
