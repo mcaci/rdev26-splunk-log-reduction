@@ -4,7 +4,6 @@ theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
-base: /rdev26-splunk-log-reduction/
 # some information about your slides (markdown enabled)
 title: Reduce Log Ingestion Costs With Pattern Detection in Splunk
 info: |
