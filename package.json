@@ -1,9 +1,9 @@
 {
-  "name": "splunk-log-reduction",
+  "name": "rdev26-splunk-log-reduction",
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build",
+    "build": "slidev build --base /rdev26-splunk-log-reduction/",
     "dev": "slidev --open",
     "export": "slidev export"
   },
