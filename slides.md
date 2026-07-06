@@ -166,5 +166,4 @@ Thank you very much!
     </a>
   </div>
 </div>
-<!-- <img src="/images/octs500.gif" class="absolute bottom-5 right-5 text-right" style="width: 20%; height: auto;"/> -->
 

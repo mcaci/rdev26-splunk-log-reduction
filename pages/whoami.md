@@ -33,7 +33,7 @@ class: text-center
 
 <div class="flex flex-col items-center gap-6">
 
-<img v-click src="../images/micheleRomeo.jpg" class="w-40 h-30 rounded-full "/>
+<img v-click src="../assets/micheleRomeo.jpg" class="w-40 h-30 rounded-full "/>
 
 
 <div>
