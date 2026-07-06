@@ -50,6 +50,12 @@ index=your_index
 | sort - count
 ```
 
+<div class="text-gray-400 text-sm leading-relaxed">
+    If your app logs a <code class="text-blue-300">trx_id</code> (and it should),
+    you can immediately answer: <strong class="text-white">which transaction types
+    are generating the most lines?</strong>
+  </div>
+
 - Transactions that log more event than average are a sign of abnormal behavior
 - Bonus: Splunk lets you trigger actions on this list
 
@@ -62,7 +68,7 @@ SCREENSHOT of trigger action
 
 #  Query #3: Pattern detection: DEMO!
 
-- Look for exact matches
+## Look for exact matches
 
 ```spl
 index=your_index
@@ -71,8 +77,11 @@ index=your_index
 ```
 
 - By using `props.conf` and `transforms.conf` you can replace `_raw` with a more precise subset
+- Start with what you already suspect. Exact match queries are fast,
+    precise, and easy to act on — if a specific message dominates,
+    you know exactly what to tell the team to fix.
 
-- Look for repeated patterns
+## Look for repeated patterns
 
 ```spl
 index=your_index
@@ -81,8 +90,8 @@ index=your_index
 | sort - cluster_count
 ```
 
-- Split results further for deeper analysis
-- Use them to isolate frequent events and patterns and verify their usefulness
+- Split results further for deeper analysis. Use them to isolate frequent events and patterns and verify their usefulness
+- When you don't know what to look for,`| cluster` groups similar log lines __automatically__, no regex needed.
 - DEMO or ADD screenshots
 
 ---
@@ -116,3 +125,96 @@ Let Splunk do it for you.
 
 And call the splunk application containing them "log_analyzer"
  -->
+
+
+---
+layout: default
+---
+
+# Put It All in a Dashboard
+
+<div class="grid grid-cols-3 gap-4 mt-6">
+
+  <!-- Panel 1 -->
+  <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col gap-2">
+    <div class="text-xs uppercase tracking-widest text-gray-500">Panel 1</div>
+    <div class="text-white font-semibold text-sm">Index Volume Over Time</div>
+    <div class="text-gray-500 text-xs leading-relaxed">
+      Timechart of ingestion volume per index.
+      Spot regressions — a deployment that suddenly
+      doubles log output shows up immediately.
+    </div>
+    <div class="mt-auto font-mono text-xs text-blue-300/70 pt-2 border-t border-white/10">
+      | timechart span=1d sum(kb) by index
+    </div>
+  </div>
+
+  <!-- Panel 2 -->
+  <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col gap-2">
+    <div class="text-xs uppercase tracking-widest text-gray-500">Panel 2</div>
+    <div class="text-white font-semibold text-sm">Top Transaction Types</div>
+    <div class="text-gray-500 text-xs leading-relaxed">
+      Bar chart of log count by transaction type.
+      Lets the team see at a glance which flows
+      dominate — updated daily.
+    </div>
+    <div class="mt-auto font-mono text-xs text-blue-300/70 pt-2 border-t border-white/10">
+      | stats count by trx_type | sort -count
+    </div>
+  </div>
+
+  <!-- Panel 3 -->
+  <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col gap-2">
+    <div class="text-xs uppercase tracking-widest text-gray-500">Panel 3</div>
+    <div class="text-white font-semibold text-sm">Log Level Breakdown</div>
+    <div class="text-gray-500 text-xs leading-relaxed">
+      Pie or stacked bar of ERROR / WARN / INFO / DEBUG ratio.
+      A healthy app should have very little DEBUG in production.
+    </div>
+    <div class="mt-auto font-mono text-xs text-blue-300/70 pt-2 border-t border-white/10">
+      | stats count by log_level
+    </div>
+  </div>
+
+  <!-- Panel 4 -->
+  <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col gap-2">
+    <div class="text-xs uppercase tracking-widest text-gray-500">Panel 4</div>
+    <div class="text-white font-semibold text-sm">Top Repeated Patterns</div>
+    <div class="text-gray-500 text-xs leading-relaxed">
+      Table of the 20 most frequent log templates.
+      Each row is a candidate for suppression,
+      sampling, or a log level change.
+    </div>
+    <div class="mt-auto font-mono text-xs text-blue-300/70 pt-2 border-t border-white/10">
+      | cluster field=_raw | sort -count
+    </div>
+  </div>
+
+  <!-- Panel 5 -->
+  <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col gap-2">
+    <div class="text-xs uppercase tracking-widest text-gray-500">Panel 5</div>
+    <div class="text-white font-semibold text-sm">Outlier Transactions</div>
+    <div class="text-gray-500 text-xs leading-relaxed">
+      Transactions with line counts more than 2σ
+      above average. These are your debugging sessions
+      that forgot to turn off verbose logging.
+    </div>
+    <div class="mt-auto font-mono text-xs text-blue-300/70 pt-2 border-t border-white/10">
+      | eventstats avg(count) as avg, stdev(count) as sd by trx_type
+    </div>
+  </div>
+
+  <!-- Panel 6 -->
+  <div v-click class="bg-blue-950/40 border border-blue-500/30 rounded-xl p-4 flex flex-col gap-2">
+    <div class="text-xs uppercase tracking-widest text-blue-400">The goal</div>
+    <div class="text-white font-semibold text-sm">A shared, living artifact</div>
+    <div class="text-gray-400 text-xs leading-relaxed">
+      Save this dashboard and share it with your team.
+      Schedule the heavy queries as saved searches
+      running nightly — the dashboard becomes a
+      <strong class="text-white">cost accountability tool</strong>,
+      not a one-off investigation.
+    </div>
+  </div>
+
+</div>

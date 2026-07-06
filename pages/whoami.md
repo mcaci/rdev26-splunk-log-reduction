@@ -1,5 +1,6 @@
 ---
 layout: intro
+hide: true
 ---
 
 # 👋 Hello
@@ -24,3 +25,40 @@ Who am I?
 <p v-after class="absolute bottom-3 left-83 opacity-100 transform -rotate-10" color="#F00">Bom dia!  </p>
 <img v-click src="../assets/TTR_USA_map_graph.jpg" class="absolute bottom-2 left-115" style="width: 24%; height: auto;"/>
 <img v-click src="../assets/picasso-gopher.gif" class="absolute bottom-2 right-20" style="width: 15%; height: auto;"/>
+
+---
+layout: center
+class: text-center
+---
+
+<div class="flex flex-col items-center gap-6">
+
+<img v-click src="../images/micheleRomeo.jpg" class="w-40 h-30 rounded-full "/>
+
+
+<div>
+  <h1 class="text-4xl font-bold tracking-tight">Michele Caci</h1>
+  <p class="text-xl text-gray-400 mt-1">Senior Software Engineer @ Logging team in Amadeus</p>
+</div>
+
+
+<div class="grid grid-cols-4 gap-4 mt-4 text-sm">
+  <div class="bg-white/5 rounded-xl px-5 py-3 border border-white/10">
+    <div class="text-blue-400 font-semibold">Focus</div>
+    <div class="text-gray-300">Logging - OpenTelemetry</div>
+  </div>
+  <div class="bg-white/5 rounded-xl px-5 py-3 border border-white/10">
+    <div class="text-blue-400 font-semibold">Stack</div>
+    <div class="text-gray-300">Go · K8S - Splunk</div>
+  </div>
+  <div class="bg-white/5 rounded-xl px-5 py-3 border border-white/10">
+    <div class="text-blue-400 font-semibold">Hobbies</div>
+    <div class="text-gray-300">Cooking, Languages, Board Games</div>
+  </div>
+  <div class="bg-white/5 rounded-xl px-5 py-3 border border-white/10">
+    <div class="text-blue-400 font-semibold">Full-time job</div>
+    <div class="text-gray-300">Surviving Fatherhood</div>
+  </div>
+</div>
+
+</div>
