@@ -3,7 +3,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build",
+    "build": "BASE_PATH=/ slidev build",
+    "build:gh-pages": "BASE_PATH=/rdev26-splunk-log-reduction/ slidev build",
     "dev": "slidev --open",
     "export": "slidev export"
   },
