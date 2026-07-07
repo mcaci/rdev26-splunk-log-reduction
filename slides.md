@@ -44,17 +44,17 @@ duration: 35min
 </div>
 
 ---
+src: ./pages/whoami.md
+hide: false
+---
+
+---
 src: ./pages/intro-talkoutline.md
 hide: true
 ---
 
 ---
-src: ./pages/problem-statement-intro.md
-hide: false
----
-
----
-src: ./pages/whoami.md
+src: ./pages/intro-problem-statement.md
 hide: false
 ---
 
@@ -64,12 +64,12 @@ hide: false
 ---
 
 ---
-src: ./pages/before-storage.md
+src: ./pages/before-indexing.md
 hide: false
 ---
 
 ---
-src: ./pages/after-storage.md
+src: ./pages/after-indexing.md
 hide: false
 ---
 
@@ -79,68 +79,32 @@ hide: true
 ---
 
 ---
-layout: two-cols
 ---
 
 # In summary
-## Where is the insight found?
+## What have we seen today?
 
-<div class="flex flex-col gap-3 mt-4 pr-4">
+<div class="flex flex-col gap-4 mt-4 pr-4">
 
   <div class="text-gray-400 text-sm leading-relaxed">
-    Your interface is <strong class="text-white">SPL</strong>.
-    Everything from ad-hoc queries to automated reports runs through it.
+    Where are the <strong class="text-white">costs</strong> in logging and how you can use Splunk to help you ideintify and reduce them.
+  </div>
+
+  <br/>
+
+  <div v-click class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs">
+    <div class="text-purple-300 font-semibold">1. Act at indexing time</div>
+    <div class="text-gray-500 mt-1">Use structured logging and <code>props.conf</code> and <code>transforms.conf</code> to help splunk detect fields, route events and discard them</div>
   </div>
 
   <div v-click class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs">
-    <div class="text-purple-300 font-semibold">1. Pick your index</div>
-    <div class="text-gray-500 mt-1">Start narrow — target the index most likely to hold the noise</div>
+    <div class="text-purple-300 font-semibold">2. Analyze your logs and find insights on how to reduce them </div>
+    <div class="text-gray-500 mt-1">Pick the highest logging index, aggregate by transactions, find patterns</div>
   </div>
 
   <div v-click class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs">
-    <div class="text-purple-300 font-semibold">2. Aggregate by transaction</div>
-    <div class="text-gray-500 mt-1">Group by <code class="text-blue-300">trx_id</code> to find which flows generate the most volume</div>
-  </div>
-
-  <div v-click class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs">
-    <div class="text-purple-300 font-semibold">3. Find patterns</div>
-    <div class="text-gray-500 mt-1">Use <code class="text-blue-300">| patterns</code> and <code class="text-blue-300">| cluster</code> to group similar messages automatically</div>
-  </div>
-
-  <div v-click class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs">
-    <div class="text-purple-300 font-semibold">4. Build a dashboard</div>
-    <div class="text-gray-500 mt-1">Operationalize findings so the whole team can monitor volume trends</div>
-  </div>
-
-</div>
-
-::right::
-
-<div class="flex flex-col gap-3 mt-14">
-
-  <div class="font-mono text-xs bg-black/40 border border-white/10 rounded-lg p-4 leading-6">
-    <div class="text-gray-500">| A typical SPL investigation</div>
-    <br/>
-    <div><span class="text-blue-300">index</span>=app_debug <span class="text-blue-300">earliest</span>=-7d</div>
-    <br/>
-    <div><span class="text-purple-400">| stats</span> <span class="text-white">count by</span> <span class="text-blue-300">trx_id, log_level</span></div>
-    <div class="text-gray-500 pl-2">-- volume per transaction</div>
-    <br/>
-    <div><span class="text-purple-400">| sort</span> <span class="text-white">-count</span></div>
-    <div class="text-gray-500 pl-2">-- worst offenders first</div>
-    <br/>
-    <div><span class="text-purple-400">| head</span> <span class="text-white">20</span></div>
-    <div class="text-gray-500 pl-2">-- focus on top 20</div>
-  </div>
-
-  <div class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-xs text-gray-400">
-    <div class="text-white font-semibold mb-2">SPL commands we'll use today</div>
-    <div class="flex flex-col gap-1">
-      <div><code class="text-blue-300">stats count by</code> — aggregate volume</div>
-      <div><code class="text-blue-300">| cluster</code> — ML-based grouping</div>
-      <div><code class="text-blue-300">| collect</code> — save to a summary index</div>
-      <div><code class="text-blue-300">| outputlookup</code> — export for comparison</div>
-    </div>
+    <div class="text-purple-300 font-semibold">3. Build alerts and dashboard</div>
+    <div class="text-gray-500 mt-1">Operationalize findings so the whole team can monitor the logging trends</div>
   </div>
 
 </div>

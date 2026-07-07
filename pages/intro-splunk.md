@@ -75,10 +75,10 @@ hide: true
 
 # Overview of Splunk
 
-The event flow view
+- __Indexing flow__ enables application events to become searchable insight
+- __Search flow__ enables fast searches across huge volumes of events
 
-- Indexing flow enables application events to become searchable insight
-- Search flow enables fast searches across huge volumes of events
+<br/>
 
 <img src="../assets/splunk-logo-w.png" class="absolute top-50 left-93" style="width: 10%; height: auto;"/>
 
@@ -134,23 +134,9 @@ flowchart LR
   linkStyle default stroke:#94a3b8,stroke-width:2px
 ```
 
-<div class="bg-yellow-950/30 border border-yellow-500/20 rounded-lg px-4 py-3 text-xs text-yellow-200/80">
-  💡 Dropping at the forwarder costs nothing. Dropping after indexing saves nothing.
+<div class="mx-auto mt-4 flex items-center justify-center text-center w-fit border border-yellow-500/20 rounded-lg bg-yellow-950/30 px-4 py-3 text-xs text-yellow-200/80">
+  💡 Savings are made at indexing time. At search time you are left with cost analysis.
 </div>
-
----
----
-
-# Searchhead view of Splunk \[TBC\]
-
-The user entrypoint
-
-- Put screenshots of
-  - Search UI
-  - Dashboard UI
-  - Alert UI
-- We are going to use this view for our demos
-
 
 ---
 layout: default

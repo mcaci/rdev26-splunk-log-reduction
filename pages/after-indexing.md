@@ -2,13 +2,11 @@
 layout: section
 ---
 
-# How to reduce costs after storing
+# What to do after indexing
+<v-click>
 
----
-layout: fact
----
-
-# Splunk Queries
+## Cost/volume analysis with Splunk Queries
+</v-click>
 
 ---
 ---
@@ -66,7 +64,7 @@ SCREENSHOT of trigger action
 ---
 ---
 
-#  Query #3: Pattern detection: DEMO!
+#  Query #3: Pattern detection: DEMO! (hidden content)
 
 ## Look for exact matches
 
@@ -95,15 +93,11 @@ index=your_index
 - DEMO or ADD screenshots
 
 ---
-layout: fact
 ---
 
-# Save the Queries
+# Turn these searches  into concrete actions
 
----
----
-
-# Turn findings into actionable items
+Save the Queries
 
 Alerts and dashboards
 
@@ -129,6 +123,7 @@ And call the splunk application containing them "log_analyzer"
 
 ---
 layout: default
+hide: true
 ---
 
 # Put It All in a Dashboard

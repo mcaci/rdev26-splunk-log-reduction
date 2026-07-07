@@ -95,20 +95,21 @@ layout: center
 </div>
 </div>
 
----
-layout: statement
----
 
-# We pay for those logs
+
+<div v-click class="mt-6 flex items-center justify-center gap-6 bg-red-950/30 border border-red-500/20 rounded-xl px-6 py-3 mx-auto w-fit">
+  <div class="text-center text-4xl font-black text-red-400 shrink-0">We pay for those logs</div>
+</div>
 
 <!-- 
-So let's see how we can reduce those costs, but first -->
-
+So let's see how we can reduce those costs, but first 
+-->
 
 
 
 ---
-layout: default
+layout: center
+class: text-center
 ---
 
 # The Problem With Logging Everything
@@ -121,11 +122,11 @@ layout: default
     <div class="text-2xl font-bold text-red-400">High Cost</div>
     <div class="text-gray-300 text-sm leading-relaxed">
       Splunk licenses on <strong class="text-white">ingestion volume</strong>.
-      Every DEBUG line, every heartbeat, every
-      redundant stack trace — you pay for all of it.
+      <br/>
     </div>
     <div class="mt-auto pt-3 border-t border-white/10 text-red-400/80 text-xs font-mono">
-      cost = volume × price/GB
+      Every DEBUG line, every heartbeat, every
+      redundant stack trace... <br/> You pay for all of it.
     </div>
   </div>
 
@@ -135,40 +136,25 @@ layout: default
     <div class="text-2xl font-bold text-yellow-400">Low Signal</div>
     <div class="text-gray-300 text-sm leading-relaxed">
       When everything is logged, <strong class="text-white">nothing stands out</strong>.
-      Finding a real error means wading through
-      thousands of irrelevant lines.
     </div>
     <div class="mt-auto pt-3 border-t border-white/10 text-yellow-400/80 text-xs">
-      noise drowns the signal
+      Finding a real error means scanning through
+      thousands of irrelevant lines.
     </div>
   </div>
 
   <!-- Card 3: Unread -->
   <div v-click class="flex flex-col gap-3 bg-white/5 border border-white/10 rounded-2xl p-6">
     <div class="text-3xl">👻</div>
-    <div class="text-2xl font-bold text-purple-400">Never Read</div>
+    <div class="text-2xl font-bold text-purple-400">Rarely Read</div>
     <div class="text-gray-300 text-sm leading-relaxed">
-      Studies show <strong class="text-white">~80% of logs</strong> are
-      never queried after ingestion. You're storing
-      and indexing data nobody will ever look at.
+      Logs are mostly read when something goes wrong, they <strong>usually stay ignored</strong> otherwise.
     </div>
     <div class="mt-auto pt-3 border-t border-white/10 text-purple-400/80 text-xs">
-      <a href="https://your-source-link" class="underline opacity-70 hover:opacity-100">
-        Source: [your citation here]
-      </a>
+      You're storing and indexing data that will rarely be read.
     </div>
   </div>
 
-</div>
-
-<!-- Bottom stat bar -->
-<div v-click class="mt-6 flex items-center gap-6 bg-red-950/30 border border-red-500/20 rounded-xl px-6 py-4">
-  <div class="text-4xl font-black text-red-400 shrink-0">80%</div>
-  <div class="text-sm text-gray-300 leading-relaxed">
-    of ingested logs are <strong class="text-white">never read</strong> — yet you pay to ingest,
-    index, and retain every byte. The goal isn't to log less blindly:
-    it's to log <strong class="text-white">smarter</strong>, and find what's safe to cut.
-  </div>
 </div>
 
 ---
@@ -180,24 +166,23 @@ class: text-center
 
   <div class="text-gray-400 text-lg tracking-widest uppercase">The good news</div>
 
-  <h1 class="text-5xl font-black leading-tight max-w-2xl">
+  <h1 v-click class="text-5xl font-black leading-tight max-w-2xl">
     You don't need to log less.<br/>
     <span class="text-blue-400">You need to log smarter.</span>
   </h1>
 
-  <div class="text-gray-400 text-base max-w-xl leading-relaxed">
-    If your team uses Splunk, you already have some tools available to
-    <ul v-click><br/>
-     Find the noise in the logs<br/>
-     Detect frequent patterns<br/>
-     Make data-driven decisions about what to cut
-    </ul>
-  </div>
-
-  <div v-click class="flex gap-4 mt-2">
-    <div class="bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-sm text-gray-300">
-      And <strong>pattern detection</strong> is only one of the available tools from the box
+  <div v-click class="mt-6 flex items-center justify-center gap-6 bg-white/5 border border-white/10 rounded-xl px-6 py-3 mx-auto w-fit">
+    <div class="text-center text-lg font-medium text-gray-300">
+      And <strong class="text-white">pattern detection with Splunk</strong> is only one of the available tools from the box
     </div>
   </div>
 
 </div>
+
+<!-- 
+If your team uses Splunk, you already have some tools available to
+- Find the noise in the logs
+- Detect frequent patterns
+- Make data-driven decisions about what to cut
+
+-->

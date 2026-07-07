@@ -2,7 +2,11 @@
 layout: section
 ---
 
-# How to reduce costs before storing
+# How to make savings at indexing
+
+<!-- 
+Make Splunk's life easy by helping it detect and extract fields
+-->
 
 ---
 layout: two-cols-header
