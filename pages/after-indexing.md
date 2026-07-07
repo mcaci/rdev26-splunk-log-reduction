@@ -113,13 +113,13 @@ Alerts and dashboards
   - A persistent place to visualize the result of your queries
   - A regular watch on the state of your logs
 - DEMO or ADD screenshots
+
 <!-- 
 You will not go and connect to splunk from time to time to check these results.
 Let Splunk do it for you.
 
 And call the splunk application containing them "log_analyzer"
- -->
-
+-->
 
 ---
 layout: default
