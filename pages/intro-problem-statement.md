@@ -5,7 +5,7 @@ layout: statement
 # We log too much
 <v-click>
 
-## And if you're here, you probably log too much too
+## And if you're here, you probably log too much as well
 </v-click>
 
 
@@ -35,7 +35,7 @@ layout: center
 
   <div>
     <!-- <div class="text-6xl font-bold text-indigo-400 tracking-tight">10<span class="text-3xl align-super font-normal">9</span></div> -->
-    <div class="text-6xl font-bold text-indigo-400 tracking-tight">1 billion</div>
+    <div class="text-6xl font-bold text-indigo-400 tracking-tight">Billions</div>
     <div class="text-gray-400 text-sm mt-1">events generated daily</div>
   </div>
 
@@ -98,7 +98,7 @@ layout: center
 
 
 <div v-click class="mt-6 flex items-center justify-center gap-6 bg-red-950/30 border border-red-500/20 rounded-xl px-6 py-3 mx-auto w-fit">
-  <div class="text-center text-4xl font-black text-red-400 shrink-0">We pay for those logs</div>
+  <div class="text-center text-4xl font-black text-red-400 shrink-0">These logs are expensive</div>
 </div>
 
 <!-- 

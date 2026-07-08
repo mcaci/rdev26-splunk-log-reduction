@@ -3,15 +3,15 @@ layout: section
 ---
 
 # What to do after indexing
-<v-click>
 
-## Cost/volume analysis with Splunk Queries
-</v-click>
+<!-- Cost/volume analysis with Splunk Queries -->
 
 ---
 ---
 
-# Query #1: General view of how your application logs: DEMO!
+# Query #1: General view of how your application logs
+
+<br/>
 
 - Get the event count
 
@@ -21,6 +21,8 @@ layout: section
     BY index
 ```
 
+<br/>
+
 - More fields for a more granular view
 
 ```spl
@@ -28,17 +30,24 @@ layout: section
 | sort - count
 ```
 
+<br/>
+
 - Focus the event analysis on the highest-volume sources.
-- DEMO or ADD screenshots
+
+<img src="../assets/query-count-by-index.png" class="absolute top-35 right-5" style="width: 50%; height: auto;"/>
 
 <!-- 
 before touching anything
+
+| tstats count WHERE index=dht11-dev BY index
 -->
 
 ---
 ---
 
-# Query #2: Look for high events count on transaction: DEMO!
+# Query #2: Look for high events count on transaction
+
+<br/>
 
 - Get a list of transactions grouped by event count
 
@@ -49,22 +58,19 @@ index=your_index
 ```
 
 <div class="text-gray-400 text-sm leading-relaxed">
-    If your app logs a <code class="text-blue-300">trx_id</code> (and it should),
+    If your app logs any <code class="text-blue-300">trx_id</code> kind of field (and it should),
     you can immediately answer: <strong class="text-white">which transaction types
     are generating the most lines?</strong>
   </div>
 
-- Transactions that log more event than average are a sign of abnormal behavior
-- Bonus: Splunk lets you trigger actions on this list
+- Transactions that log way more (or less) events than average are a sign of abnormal behavior
 
-SCREENSHOT of trigger action
-
-- DEMO or ADD screenshots
+<img src="../assets/query-count-by-transaction.png" class="absolute bottom-5 left-55" style="width: 55%; height: auto;"/>
 
 ---
 ---
 
-#  Query #3: Pattern detection: DEMO! (hidden content)
+#  Query #3: Pattern detection
 
 ## Look for exact matches
 
@@ -75,9 +81,7 @@ index=your_index
 ```
 
 - By using `props.conf` and `transforms.conf` you can replace `_raw` with a more precise subset
-- Start with what you already suspect. Exact match queries are fast,
-    precise, and easy to act on — if a specific message dominates,
-    you know exactly what to tell the team to fix.
+- Exact match queries are fast and precise but do not look for patterns
 
 ## Look for repeated patterns
 
@@ -88,37 +92,37 @@ index=your_index
 | sort - cluster_count
 ```
 
-- Split results further for deeper analysis. Use them to isolate frequent events and patterns and verify their usefulness
-- When you don't know what to look for,`| cluster` groups similar log lines __automatically__, no regex needed.
-- DEMO or ADD screenshots
+- Split results further for deeper analysis. Use them to isolate frequent events and patterns.
+- `| cluster` groups similar log lines __automatically__, no regex needed.
 
 ---
+layout: center
+class: text-center
 ---
 
-# Turn these searches  into concrete actions
+# DEMO!
 
-Save the Queries
+<!-- 
+cluster query and saving to dashboard and alerts.
+Also show drilldown
 
-Alerts and dashboards
+Queries do not watch themselves
 
-- Queries do not watch themselves
+You will not go and connect to splunk from time to time to check these results.
+Let Splunk do it for you.
+
+And call the splunk application containing them "log_analyzer"
+
 - Create alerts to be notified for:
   - transactions detected with more than `x` events.
   - patterns repeating more than `y` times.
 - Create dashboards that monitor the results of these queries.
 
-<br/>
-
 - Alerts and dashboards provide:
   - A persistent place to visualize the result of your queries
   - A regular watch on the state of your logs
-- DEMO or ADD screenshots
 
-<!-- 
-You will not go and connect to splunk from time to time to check these results.
-Let Splunk do it for you.
-
-And call the splunk application containing them "log_analyzer"
+Bonus: Splunk lets you trigger actions on this list
 -->
 
 ---
@@ -213,3 +217,4 @@ hide: true
   </div>
 
 </div>
+
