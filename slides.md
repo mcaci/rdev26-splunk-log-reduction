@@ -87,7 +87,7 @@ hide: true
 <div class="flex flex-col gap-4 mt-4 pr-4">
 
   <div class="text-gray-400 text-sm leading-relaxed">
-    Where are the <strong class="text-white">costs</strong> in logging and how you can use Splunk to help you ideintify and reduce them.
+    Where are the <strong class="text-white">costs</strong> in logging and how you can use Splunk to help you identify and reduce them.
   </div>
 
   <br/>

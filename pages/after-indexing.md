@@ -52,8 +52,7 @@ before touching anything
 - Get a list of transactions grouped by event count
 
 ```spl
-index=your_index
-| stats count by transaction_id
+| tstats count WHERE index=your_index BY transaction_id
 | sort - count
 ```
 
